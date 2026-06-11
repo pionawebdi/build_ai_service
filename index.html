@@ -397,7 +397,7 @@
     /* ══════════════════════════════════════
        BENTO GRID
     ══════════════════════════════════════ */
-    .bento { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+    .bento { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
 
     /* ── base card ── */
     .bc-card {
@@ -462,7 +462,11 @@
 
     .bc-card:hover .bc-arrow { opacity: 1; transform: translate(1px,-1px); }
 
-    .bc-desc { font-size: 0.89rem; color: var(--tx3); line-height: 1.6; flex: 1; }
+    .bc-desc {
+      font-size: 0.89rem; color: var(--tx3); line-height: 1.6; flex: 1;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
 
     .bc-foot {
       display: flex; align-items: center; gap: 5px;
