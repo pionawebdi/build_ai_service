@@ -841,7 +841,7 @@ function renderNav() {
   document.getElementById('hNav').innerHTML =
     Object.entries(DATA).map(([c,d]) => `
       <button class="h-tab ${c===cat?'active':''}" onclick="selCat('${c}')">
-        <span class="ti">${d.icon}</span>${c}
+        ${c}
         <span class="tab-badge">${catTotal(c)}</span>
       </button>`).join('');
 }
