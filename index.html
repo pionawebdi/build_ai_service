@@ -8,319 +8,279 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    /* ─── TOKENS ─── */
+    /* ═══════════════════════════════
+       DESIGN TOKENS
+    ═══════════════════════════════ */
     :root {
-      --font: 'Inter', system-ui, -apple-system, sans-serif;
+      --font: 'Inter', system-ui, sans-serif;
+
+      /* Surface */
+      --page-bg:   #f2f2f7;
+      --card-bg:   #ffffff;
+      --hdr-bg:    #ffffff;
+      --sb-bg:     #0d1117;
 
       /* Neutrals */
-      --white:    #ffffff;
-      --gray-50:  #f8fafc;
-      --gray-100: #f1f5f9;
-      --gray-150: #eaf0f7;
-      --gray-200: #e2e8f0;
-      --gray-300: #cbd5e1;
-      --gray-400: #94a3b8;
-      --gray-500: #64748b;
-      --gray-600: #475569;
-      --gray-700: #334155;
-      --gray-800: #1e293b;
-      --gray-900: #0f172a;
+      --n-50:  #f8fafc;
+      --n-100: #f1f5f9;
+      --n-200: #e2e8f0;
+      --n-300: #cbd5e1;
+      --n-400: #94a3b8;
+      --n-500: #64748b;
+      --n-600: #475569;
+      --n-700: #334155;
+      --n-800: #1e293b;
+      --n-900: #0f172a;
 
-      /* Accent – overridden per category */
-      --accent:      #6366f1;
-      --accent-soft: #eef2ff;
-      --accent-mid:  #c7d2fe;
+      /* Accent (overridden per category) */
+      --a:     #6366f1;
+      --a-soft:#eef2ff;
+      --a-mid: #c7d2fe;
+      --a-dark:#4338ca;
 
       /* Layout */
       --hh: 58px;
-      --sw: 232px;
-      --r:  10px;
-      --r-sm: 6px;
-      --r-lg: 14px;
+      --sw: 228px;
+
+      /* Card */
+      --r: 20px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 8px 28px rgba(0,0,0,0.1),  0 2px 6px rgba(0,0,0,0.06);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.14), 0 4px 12px rgba(0,0,0,0.06);
 
       /* Sidebar */
-      --sb-bg:          #0f172a;
-      --sb-text:        #94a3b8;
-      --sb-hover:       rgba(255,255,255,0.055);
-      --sb-active-bg:   rgba(99,102,241,0.14);
-      --sb-active-text: #a5b4fc;
-      --sb-border:      rgba(255,255,255,0.05);
-      --sb-label:       rgba(255,255,255,0.22);
-
-      /* Cards */
-      --card-bg:      #ffffff;
-      --card-border:  #e2e8f0;
-      --card-shadow:  0 1px 2px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.04);
-      --card-hover:   0 6px 20px rgba(0,0,0,0.09), 0 2px 6px rgba(0,0,0,0.05);
+      --sb-text:    rgba(148,163,184,1);
+      --sb-hover:   rgba(255,255,255,0.05);
+      --sb-active:  rgba(99,102,241,0.15);
+      --sb-active-t:#a5b4fc;
+      --sb-sep:     rgba(255,255,255,0.05);
     }
 
-    /* ─── RESET ─── */
+    /* ═══════════════════════════════
+       BASE
+    ═══════════════════════════════ */
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font);
-      background: var(--gray-50);
-      color: var(--gray-900);
-      min-height: 100vh;
+      background: var(--page-bg);
+      color: var(--n-900);
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ─── HEADER ─── */
+    /* ═══════════════════════════════
+       HEADER
+    ═══════════════════════════════ */
     header {
       position: fixed;
       inset: 0 0 auto 0;
       height: var(--hh);
-      background: var(--white);
-      border-bottom: 1px solid var(--gray-200);
+      background: var(--hdr-bg);
+      border-bottom: 1px solid var(--n-200);
       display: flex;
       align-items: center;
-      z-index: 300;
+      z-index: 400;
     }
 
-    .logo-zone {
+    .h-brand {
       width: var(--sw);
       flex-shrink: 0;
       height: 100%;
       display: flex;
       align-items: center;
       gap: 9px;
-      padding: 0 20px;
-      border-right: 1px solid var(--gray-200);
+      padding: 0 18px;
+      border-right: 1px solid var(--n-200);
     }
 
-    .logo-mark {
-      width: 28px; height: 28px;
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-      border-radius: 7px;
+    .brand-icon {
+      width: 30px; height: 30px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 13px;
+      font-size: 14px;
+      box-shadow: 0 2px 8px rgba(99,102,241,.3);
       flex-shrink: 0;
-      box-shadow: 0 2px 8px rgba(99,102,241,0.35);
     }
 
-    .logo-name {
-      font-size: 0.95rem;
+    .brand-name {
+      font-size: .93rem;
       font-weight: 700;
-      color: var(--gray-900);
-      letter-spacing: -0.4px;
+      color: var(--n-900);
+      letter-spacing: -.4px;
     }
 
-    .logo-pill {
-      font-size: 0.58rem;
+    .brand-tag {
+      margin-left: 2px;
+      font-size: .58rem;
       font-weight: 700;
-      letter-spacing: 0.6px;
       text-transform: uppercase;
-      padding: 2px 6px;
+      letter-spacing: .5px;
+      padding: 2px 5px;
       border-radius: 4px;
-      background: var(--gray-100);
-      color: var(--gray-500);
-      border: 1px solid var(--gray-200);
+      background: var(--n-100);
+      color: var(--n-500);
+      border: 1px solid var(--n-200);
     }
 
-    .header-nav {
+    .h-nav {
       display: flex;
-      align-items: center;
-      gap: 1px;
-      padding: 0 16px;
-      flex: 1;
+      align-items: stretch;
       height: 100%;
+      padding: 0 12px;
+      gap: 2px;
+      flex: 1;
     }
 
-    .nav-tab {
+    .h-tab {
       position: relative;
-      display: flex;
-      align-items: center;
+      display: flex; align-items: center;
       gap: 6px;
       height: 100%;
-      padding: 0 14px;
-      border: none;
-      background: transparent;
-      color: var(--gray-500);
-      font-size: 0.84rem;
-      font-weight: 500;
+      padding: 0 13px;
+      border: none; background: transparent;
+      color: var(--n-500);
+      font-size: .83rem; font-weight: 500;
       font-family: var(--font);
       cursor: pointer;
-      transition: color 0.15s;
+      transition: color .15s;
       white-space: nowrap;
     }
 
-    .nav-tab::after {
+    .h-tab::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 14px; right: 14px;
-      height: 2px;
-      border-radius: 2px 2px 0 0;
-      background: var(--accent);
-      opacity: 0;
-      transition: opacity 0.15s;
+      bottom: 0; left: 13px; right: 13px;
+      height: 2px; border-radius: 2px 2px 0 0;
+      background: var(--a);
+      opacity: 0; transition: opacity .15s;
     }
 
-    .nav-tab:hover { color: var(--gray-800); }
+    .h-tab:hover { color: var(--n-800); }
 
-    .nav-tab.active {
-      color: var(--accent);
-      font-weight: 600;
+    .h-tab.active { color: var(--a); font-weight: 600; }
+    .h-tab.active::after { opacity: 1; }
+
+    .h-tab .ti { font-size: .85rem; }
+
+    .tab-badge {
+      font-size: .65rem; font-weight: 600;
+      padding: 1px 5px; border-radius: 99px;
+      background: var(--n-100); color: var(--n-400);
+      border: 1px solid var(--n-200);
+      transition: all .15s;
     }
 
-    .nav-tab.active::after { opacity: 1; }
-
-    .nav-tab .t-icon { font-size: 0.88rem; }
-
-    .nav-count {
-      font-size: 0.68rem;
-      font-weight: 600;
-      padding: 1px 5px;
-      border-radius: 99px;
-      background: var(--gray-100);
-      color: var(--gray-400);
-      border: 1px solid var(--gray-200);
-      transition: all 0.15s;
+    .h-tab.active .tab-badge {
+      background: var(--a-soft); color: var(--a);
+      border-color: var(--a-mid);
     }
 
-    .nav-tab.active .nav-count {
-      background: var(--accent-soft);
-      color: var(--accent);
-      border-color: var(--accent-mid);
-    }
-
-    /* Search + actions */
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 0 18px;
+    .h-right {
+      display: flex; align-items: center;
+      gap: 8px; padding: 0 16px;
       margin-left: auto;
     }
 
-    .search-box {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
+    .search-wrap { position: relative; display: flex; align-items: center; }
 
-    .search-box svg {
-      position: absolute;
-      left: 10px;
+    .search-wrap svg {
+      position: absolute; left: 9px;
       width: 14px; height: 14px;
-      color: var(--gray-400);
-      pointer-events: none;
+      color: var(--n-400); pointer-events: none;
     }
 
-    .search-input {
-      background: var(--gray-100);
-      border: 1px solid var(--gray-200);
-      border-radius: var(--r-sm);
-      padding: 6px 12px 6px 32px;
-      font-size: 0.82rem;
-      font-family: var(--font);
-      color: var(--gray-900);
-      width: 210px;
-      outline: none;
-      transition: all 0.15s;
+    .search-inp {
+      background: var(--n-100);
+      border: 1px solid var(--n-200);
+      border-radius: 8px;
+      padding: 6px 12px 6px 30px;
+      font-size: .81rem; font-family: var(--font);
+      color: var(--n-900); width: 200px; outline: none;
+      transition: all .18s;
     }
 
-    .search-input::placeholder { color: var(--gray-400); }
+    .search-inp::placeholder { color: var(--n-400); }
 
-    .search-input:focus {
-      background: var(--white);
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
-      width: 250px;
+    .search-inp:focus {
+      background: #fff; border-color: var(--a);
+      box-shadow: 0 0 0 3px rgba(99,102,241,.1);
+      width: 244px;
     }
 
-    /* ─── SIDEBAR ─── */
+    /* ═══════════════════════════════
+       SIDEBAR
+    ═══════════════════════════════ */
     aside {
       position: fixed;
       top: var(--hh); left: 0; bottom: 0;
       width: var(--sw);
       background: var(--sb-bg);
-      border-right: 1px solid var(--sb-border);
+      border-right: 1px solid var(--sb-sep);
       overflow-y: auto;
-      padding: 12px 8px 32px;
+      padding: 10px 8px 32px;
       scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,0.07) transparent;
+      scrollbar-color: rgba(255,255,255,0.06) transparent;
     }
 
     aside::-webkit-scrollbar { width: 3px; }
     aside::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.07); border-radius: 3px; }
 
-    .sb-label {
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: var(--sb-label);
-      text-transform: uppercase;
-      letter-spacing: 1.1px;
-      padding: 18px 10px 7px;
+    .sb-lbl {
+      font-size: .63rem; font-weight: 700;
+      color: rgba(255,255,255,.2); text-transform: uppercase;
+      letter-spacing: 1.1px; padding: 16px 10px 6px;
     }
 
-    .sb-label:first-child { padding-top: 8px; }
+    .sb-lbl:first-child { padding-top: 8px; }
 
-    .sb-divider {
-      height: 1px;
-      background: var(--sb-border);
-      margin: 8px 4px;
-    }
+    .sb-sep { height: 1px; background: var(--sb-sep); margin: 7px 4px; }
 
     .sb-item {
       width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display: flex; align-items: center; gap: 8px;
       padding: 7px 10px;
-      border: none;
-      background: transparent;
+      border: none; background: transparent;
       color: var(--sb-text);
-      font-size: 0.83rem;
-      font-weight: 450;
+      font-size: .82rem; font-weight: 400;
       font-family: var(--font);
-      border-radius: var(--r-sm);
-      cursor: pointer;
-      text-align: left;
-      transition: background 0.12s, color 0.12s;
+      border-radius: 7px; cursor: pointer; text-align: left;
+      transition: background .12s, color .12s;
     }
 
-    .sb-item:hover {
-      background: var(--sb-hover);
-      color: rgba(255,255,255,0.78);
-    }
+    .sb-item:hover { background: var(--sb-hover); color: rgba(255,255,255,.75); }
 
     .sb-item.active {
-      background: var(--sb-active-bg);
-      color: var(--sb-active-text);
-      font-weight: 550;
+      background: var(--sb-active);
+      color: var(--sb-active-t); font-weight: 550;
     }
 
     .sb-dot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.12);
-      flex-shrink: 0;
-      transition: background 0.12s;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: rgba(255,255,255,.1); flex-shrink: 0;
     }
 
     .sb-item.active .sb-dot {
       background: #818cf8;
-      box-shadow: 0 0 0 3px rgba(129,140,248,0.2);
+      box-shadow: 0 0 0 3px rgba(129,140,248,.2);
     }
 
-    .sb-count {
+    .sb-n {
       margin-left: auto;
-      font-size: 0.68rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.06);
-      padding: 1px 6px;
-      border-radius: 4px;
+      font-size: .67rem; font-weight: 500;
+      color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.05);
+      padding: 1px 5px; border-radius: 4px;
     }
 
-    .sb-item.active .sb-count {
-      color: rgba(165,180,252,0.65);
-      background: rgba(99,102,241,0.18);
+    .sb-item.active .sb-n {
+      color: rgba(165,180,252,.65);
+      background: rgba(99,102,241,.18);
     }
 
-    /* ─── MAIN ─── */
+    /* ═══════════════════════════════
+       MAIN
+    ═══════════════════════════════ */
     main {
       margin-left: var(--sw);
       padding-top: var(--hh);
@@ -328,709 +288,743 @@
     }
 
     .content {
-      padding: 30px 32px 56px;
+      padding: 28px 28px 60px;
+      animation: fadeUp .22s ease both;
     }
 
-    /* breadcrumb */
-    .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.75rem;
-      color: var(--gray-400);
-      margin-bottom: 18px;
-    }
-
-    .breadcrumb span { cursor: default; }
-    .breadcrumb .sep { color: var(--gray-300); }
-    .breadcrumb .current { color: var(--gray-700); font-weight: 500; }
-
-    /* page title row */
-    .page-head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 24px;
-    }
-
-    .page-title-wrap {}
-
-    .page-eyebrow {
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-
-    .page-title {
-      font-size: 1.4rem;
-      font-weight: 750;
-      color: var(--gray-900);
-      letter-spacing: -0.5px;
-      line-height: 1.2;
-    }
-
-    .page-desc {
-      font-size: 0.82rem;
-      color: var(--gray-400);
-      margin-top: 5px;
-      font-weight: 400;
-    }
-
-    .page-meta {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .meta-chip {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 20px;
-      background: var(--gray-100);
-      color: var(--gray-500);
-      border: 1px solid var(--gray-200);
-    }
-
-    .meta-chip .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    /* ─── STAT STRIP ─── */
-    .stat-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 28px;
-    }
-
-    .stat-tile {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: var(--r);
-      padding: 14px 18px;
-      box-shadow: var(--card-shadow);
-    }
-
-    .stat-num {
-      font-size: 1.55rem;
-      font-weight: 750;
-      color: var(--gray-900);
-      letter-spacing: -0.5px;
-      line-height: 1;
-    }
-
-    .stat-lbl {
-      font-size: 0.72rem;
-      color: var(--gray-400);
-      font-weight: 500;
-      margin-top: 4px;
-    }
-
-    /* ─── SUB SECTION HEADER ─── */
-    .sub-head {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 26px 0 14px;
-    }
-
-    .sub-head-text {
-      font-size: 0.8rem;
-      font-weight: 650;
-      color: var(--gray-600);
-      letter-spacing: -0.1px;
-    }
-
-    .sub-head-line {
-      flex: 1;
-      height: 1px;
-      background: var(--gray-200);
-    }
-
-    .sub-head-count {
-      font-size: 0.68rem;
-      font-weight: 600;
-      color: var(--gray-400);
-      background: var(--gray-100);
-      border: 1px solid var(--gray-200);
-      padding: 2px 7px;
-      border-radius: 4px;
-    }
-
-    /* ─── CARDS ─── */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 11px;
-    }
-
-    .card {
-      background: var(--white);
-      border: 1px solid var(--card-border);
-      border-radius: var(--r);
-      padding: 16px 18px 14px;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      transition: border-color 0.16s, transform 0.16s, box-shadow 0.16s;
-      box-shadow: var(--card-shadow);
-      cursor: pointer;
-      position: relative;
-    }
-
-    .card:hover {
-      border-color: var(--accent);
-      box-shadow: var(--card-hover);
-      transform: translateY(-2px);
-    }
-
-    .card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .card-icon-wrap {
-      width: 34px; height: 34px;
-      border-radius: 8px;
-      background: var(--gray-100);
-      border: 1px solid var(--gray-200);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .card-favicon {
-      width: 20px; height: 20px;
-      object-fit: contain;
-    }
-
-    .card-arrow {
-      opacity: 0;
-      color: var(--gray-300);
-      font-size: 0.75rem;
-      transition: opacity 0.15s, transform 0.15s;
-      font-style: normal;
-    }
-
-    .card:hover .card-arrow {
-      opacity: 1;
-      transform: translate(1px, -1px);
-    }
-
-    .card-name {
-      font-size: 0.875rem;
-      font-weight: 650;
-      color: var(--gray-900);
-      letter-spacing: -0.2px;
-      line-height: 1.3;
-    }
-
-    .card-desc {
-      font-size: 0.77rem;
-      color: var(--gray-400);
-      line-height: 1.6;
-      flex: 1;
-    }
-
-    .card-footer {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      padding-top: 8px;
-      border-top: 1px solid var(--gray-100);
-      margin-top: auto;
-    }
-
-    .card-dot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-      opacity: 0.5;
-      flex-shrink: 0;
-    }
-
-    .card-domain {
-      font-size: 0.7rem;
-      color: var(--gray-400);
-      font-weight: 500;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      transition: color 0.15s;
-    }
-
-    .card:hover .card-dot   { opacity: 1; }
-    .card:hover .card-domain { color: var(--accent); }
-
-    /* ─── SEARCH RESULTS ─── */
-    .search-results-header {
-      font-size: 0.8rem;
-      color: var(--gray-400);
-      margin-bottom: 18px;
-    }
-
-    .search-results-header strong { color: var(--gray-700); }
-
-    .no-results {
-      text-align: center;
-      padding: 64px 20px;
-      color: var(--gray-400);
-    }
-
-    .no-results .nr-icon { font-size: 2rem; margin-bottom: 10px; }
-    .no-results p { font-size: 0.85rem; }
-
-    /* ─── ANIMATIONS ─── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .content { animation: fadeUp 0.22s ease; }
-
-    /* ─── CATEGORY COLOR OVERRIDES ─── */
-    [data-cat="AI 어시스턴트"]  { --accent:#6366f1; --accent-soft:#eef2ff; --accent-mid:#c7d2fe; }
-    [data-cat="AI 크리에이티브"] { --accent:#8b5cf6; --accent-soft:#f5f3ff; --accent-mid:#ddd6fe; }
-    [data-cat="개발 도구"]       { --accent:#0891b2; --accent-soft:#ecfeff; --accent-mid:#a5f3fc; }
-    [data-cat="AI 리서치"]       { --accent:#059669; --accent-soft:#ecfdf5; --accent-mid:#a7f3d0; }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    /* breadcrumb */
+    .bc {
+      display: flex; align-items: center; gap: 5px;
+      font-size: .72rem; color: var(--n-400);
+      margin-bottom: 16px;
     }
-    @media (max-width: 640px) {
+
+    .bc .sep { color: var(--n-300); }
+    .bc .cur { color: var(--n-600); font-weight: 500; }
+
+    /* page heading */
+    .pg-head {
+      display: flex; align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+
+    .pg-eyebrow {
+      font-size: .68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .7px;
+      color: var(--a); margin-bottom: 4px;
+    }
+
+    .pg-title {
+      font-size: 1.35rem; font-weight: 760;
+      color: var(--n-900); letter-spacing: -.5px;
+    }
+
+    .pg-desc {
+      font-size: .8rem; color: var(--n-400);
+      margin-top: 4px;
+    }
+
+    .pg-chip {
+      display: flex; align-items: center; gap: 5px;
+      font-size: .74rem; font-weight: 500;
+      padding: 5px 12px; border-radius: 99px;
+      background: #fff; color: var(--n-500);
+      border: 1px solid var(--n-200);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pg-chip .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--a);
+    }
+
+    /* ═══════════════════════════════
+       OVERVIEW STATS (전체 보기)
+    ═══════════════════════════════ */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .ov-card {
+      background: #fff;
+      border-radius: var(--r);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: transform .18s, box-shadow .18s;
+      border: 1px solid transparent;
+    }
+
+    .ov-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--a-mid);
+    }
+
+    .ov-icon { font-size: 1.4rem; margin-bottom: 10px; }
+
+    .ov-num {
+      font-size: 1.7rem; font-weight: 780;
+      color: var(--n-900); letter-spacing: -.6px; line-height: 1;
+    }
+
+    .ov-lbl {
+      font-size: .73rem; color: var(--n-400);
+      font-weight: 500; margin-top: 3px;
+    }
+
+    .ov-bar {
+      height: 3px; border-radius: 99px;
+      background: var(--a-soft);
+      margin-top: 12px; overflow: hidden;
+    }
+
+    .ov-bar-fill {
+      height: 100%; border-radius: 99px;
+      background: var(--a);
+    }
+
+    /* ═══════════════════════════════
+       SECTION HEADER (sub divider)
+    ═══════════════════════════════ */
+    .sec-head {
+      display: flex; align-items: center; gap: 10px;
+      margin: 28px 0 14px;
+    }
+
+    .sec-head-text {
+      font-size: .78rem; font-weight: 650;
+      color: var(--n-600); white-space: nowrap;
+    }
+
+    .sec-head-line { flex: 1; height: 1px; background: var(--n-200); }
+
+    .sec-head-n {
+      font-size: .66rem; font-weight: 600;
+      color: var(--n-400); background: var(--n-100);
+      border: 1px solid var(--n-200);
+      padding: 2px 7px; border-radius: 4px;
+    }
+
+    /* ═══════════════════════════════
+       BENTO GRID
+    ═══════════════════════════════ */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+    }
+
+    /* ── BASE CARD ── */
+    .bc-card {
+      background: var(--card-bg);
+      border-radius: var(--r);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.04);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform .2s cubic-bezier(.22,1,.36,1),
+                  box-shadow .2s cubic-bezier(.22,1,.36,1);
+      cursor: pointer;
+    }
+
+    .bc-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* ── WIDE (2 col) ── */
+    .bc-wide { grid-column: span 2; }
+
+    /* ── TALL (2 row) ── */
+    .bc-tall { grid-row: span 2; }
+
+    /* ── FEATURED gradient (index 0 of each section) ── */
+    .bc-featured { border: none; }
+
+    /* ── WIDE CARD INNER — horizontal ── */
+    .bc-wide .bc-in {
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+      padding: 24px 26px;
+      flex: 1;
+    }
+
+    .bc-wide .bc-favicon-wrap {
+      width: 54px; height: 54px;
+      border-radius: 14px; flex-shrink: 0;
+    }
+
+    .bc-wide .bc-favicon { width: 30px; height: 30px; }
+
+    .bc-wide .bc-body { flex: 1; }
+
+    .bc-wide .bc-name { font-size: 1rem; font-weight: 700; }
+
+    .bc-wide .bc-desc {
+      font-size: .82rem; margin-top: 4px;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .bc-wide .bc-foot { margin-top: 10px; }
+
+    /* ── NORMAL CARD INNER — vertical ── */
+    .bc-in {
+      display: flex;
+      flex-direction: column;
+      padding: 18px 20px;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .bc-favicon-wrap {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: var(--n-100);
+      border: 1px solid var(--n-200);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; flex-shrink: 0;
+    }
+
+    .bc-favicon {
+      width: 22px; height: 22px;
+      object-fit: contain;
+    }
+
+    .bc-head-row {
+      display: flex; align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .bc-name {
+      font-size: .88rem; font-weight: 650;
+      color: var(--n-900); letter-spacing: -.2px;
+      line-height: 1.25;
+    }
+
+    .bc-arrow {
+      opacity: 0; color: var(--n-300);
+      font-size: .75rem; font-style: normal;
+      transition: opacity .15s, transform .15s;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    .bc-card:hover .bc-arrow { opacity: 1; transform: translate(1px,-1px); }
+
+    .bc-desc {
+      font-size: .76rem; color: var(--n-400);
+      line-height: 1.6; flex: 1;
+    }
+
+    .bc-foot {
+      display: flex; align-items: center; gap: 5px;
+      padding-top: 9px;
+      border-top: 1px solid var(--n-100);
+      margin-top: auto;
+    }
+
+    .bc-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--a); opacity: .4; flex-shrink: 0;
+      transition: opacity .15s;
+    }
+
+    .bc-card:hover .bc-dot { opacity: 1; }
+
+    .bc-domain {
+      font-size: .7rem; color: var(--n-400);
+      font-weight: 500; overflow: hidden;
+      text-overflow: ellipsis; white-space: nowrap;
+      transition: color .15s;
+    }
+
+    .bc-card:hover .bc-domain { color: var(--a); }
+
+    /* ── featured card text tints ── */
+    .bc-featured .bc-favicon-wrap {
+      background: rgba(255,255,255,.5);
+      border-color: rgba(255,255,255,.4);
+    }
+
+    .bc-featured .bc-name  { color: var(--n-900); }
+    .bc-featured .bc-desc  { color: var(--n-600); }
+    .bc-featured .bc-foot  { border-top-color: rgba(0,0,0,.06); }
+    .bc-featured .bc-dot   { background: var(--a); }
+    .bc-featured .bc-domain { color: var(--n-500); }
+    .bc-featured:hover .bc-domain { color: var(--a-dark); }
+
+    /* ── Category gradient palettes ── */
+    .bg-indigo  { background: linear-gradient(145deg, #eef2ff 0%, #e0e7ff 100%); }
+    .bg-violet  { background: linear-gradient(145deg, #fdf4ff 0%, #ede9fe 100%); }
+    .bg-cyan    { background: linear-gradient(145deg, #ecfeff 0%, #dbeafe 100%); }
+    .bg-emerald { background: linear-gradient(145deg, #ecfdf5 0%, #d1fae5 100%); }
+
+    /* ═══════════════════════════════
+       CATEGORY COLOR SCOPE
+    ═══════════════════════════════ */
+    [data-cat="AI 어시스턴트"]  { --a:#6366f1; --a-soft:#eef2ff; --a-mid:#c7d2fe; --a-dark:#4338ca; }
+    [data-cat="AI 크리에이티브"] { --a:#7c3aed; --a-soft:#f5f3ff; --a-mid:#ddd6fe; --a-dark:#5b21b6; }
+    [data-cat="개발 도구"]       { --a:#0891b2; --a-soft:#ecfeff; --a-mid:#a5f3fc; --a-dark:#0e7490; }
+    [data-cat="AI 리서치"]       { --a:#059669; --a-soft:#ecfdf5; --a-mid:#a7f3d0; --a-dark:#047857; }
+
+    /* ═══════════════════════════════
+       SEARCH RESULTS
+    ═══════════════════════════════ */
+    .sr-header {
+      font-size: .8rem; color: var(--n-400);
+      margin-bottom: 18px;
+    }
+
+    .sr-header strong { color: var(--n-700); }
+
+    .no-results {
+      text-align: center; padding: 80px 20px;
+      color: var(--n-400);
+    }
+
+    .no-results .nr-ico { font-size: 2.5rem; margin-bottom: 12px; }
+    .no-results p { font-size: .85rem; }
+
+    /* ═══════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════ */
+    @media (max-width: 1100px) {
+      .bento { grid-template-columns: repeat(3, 1fr); }
+      .overview-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 800px) {
+      .bento { grid-template-columns: repeat(2, 1fr); }
+      .bc-wide { grid-column: span 2; }
+    }
+
+    @media (max-width: 600px) {
       :root { --sw: 0px; }
       aside { display: none; }
-      .content { padding: 20px 16px 40px; }
-      .header-nav { padding: 0 6px; }
-      .nav-tab { padding: 0 8px; font-size: 0.78rem; }
+      .content { padding: 16px 14px 40px; }
+      .bento { grid-template-columns: 1fr 1fr; gap: 10px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ─── HEADER ─── -->
+<!-- ═══ HEADER ═══ -->
 <header>
-  <div class="logo-zone">
-    <div class="logo-mark">⚡</div>
-    <span class="logo-name">AI Hub</span>
-    <span class="logo-pill">2025</span>
+  <div class="h-brand">
+    <div class="brand-icon">⚡</div>
+    <span class="brand-name">AI Hub</span>
+    <span class="brand-tag">2025</span>
   </div>
 
-  <nav class="header-nav" id="headerNav"></nav>
+  <nav class="h-nav" id="hNav"></nav>
 
-  <div class="header-right">
-    <div class="search-box">
+  <div class="h-right">
+    <div class="search-wrap">
       <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8">
         <circle cx="8.5" cy="8.5" r="5.5"/>
         <line x1="12.5" y1="12.5" x2="17" y2="17"/>
       </svg>
-      <input
-        class="search-input"
-        type="search"
-        id="searchInput"
-        placeholder="서비스 검색..."
-        autocomplete="off"
-        oninput="handleSearch(this.value)"
-      />
+      <input class="search-inp" type="search" id="si"
+             placeholder="서비스 검색..." autocomplete="off"
+             oninput="onSearch(this.value)" />
     </div>
   </div>
 </header>
 
-<!-- ─── SIDEBAR ─── -->
-<aside id="sidebar"></aside>
+<!-- ═══ SIDEBAR ═══ -->
+<aside id="sb"></aside>
 
-<!-- ─── MAIN ─── -->
+<!-- ═══ MAIN ═══ -->
 <main>
-  <div class="content" id="contentArea"></div>
+  <div class="content" id="ca"></div>
 </main>
 
 <script>
-/* ════════════════════════════════════════
+/* ══════════════════════════════════════
    DATA
-════════════════════════════════════════ */
+══════════════════════════════════════ */
 const DATA = {
   "AI 어시스턴트": {
-    icon: "🤖",
-    desc: "대화형 AI 챗봇과 LLM 기반 어시스턴트",
-    subs: {
-      "챗봇 & LLM": [
-        { name:"Claude",             url:"https://claude.ai",                           desc:"Anthropic의 안전 중심 AI 어시스턴트" },
-        { name:"ChatGPT",            url:"https://chatgpt.com",                         desc:"OpenAI의 대화형 GPT 모델" },
-        { name:"Gemini",             url:"https://gemini.google.com",                   desc:"Google의 멀티모달 대형 언어 모델" },
-        { name:"Grok",               url:"https://grok.x.ai",                           desc:"xAI가 개발한 실시간 AI 어시스턴트" },
-        { name:"Genspark",           url:"https://www.genspark.ai",                     desc:"AI 검색 & 슈퍼 에이전트 플랫폼" },
-        { name:"Microsoft Copilot",  url:"https://copilot.microsoft.com",               desc:"Microsoft × OpenAI의 통합 AI" },
-        { name:"Perplexity AI",      url:"https://www.perplexity.ai",                   desc:"출처 기반 AI 심층 검색 엔진" },
-        { name:"Meta AI",            url:"https://www.meta.ai",                         desc:"Meta의 Llama 기반 AI 어시스턴트" },
-        { name:"Le Chat",            url:"https://chat.mistral.ai",                     desc:"Mistral AI의 유럽산 챗봇" },
-        { name:"HyperCLOVA X",       url:"https://clova-x.naver.com",                  desc:"네이버의 한국어 특화 대형 모델" },
+    icon:"🤖", grad:"bg-indigo",
+    desc:"대화형 AI 챗봇과 LLM 기반 어시스턴트",
+    subs:{
+      "챗봇 & LLM":[
+        {name:"Claude",            url:"https://claude.ai",                        desc:"Anthropic의 안전 중심 AI 어시스턴트"},
+        {name:"ChatGPT",           url:"https://chatgpt.com",                      desc:"OpenAI의 대화형 GPT 모델"},
+        {name:"Gemini",            url:"https://gemini.google.com",                desc:"Google의 멀티모달 대형 언어 모델"},
+        {name:"Grok",              url:"https://grok.x.ai",                        desc:"xAI가 개발한 실시간 AI 어시스턴트"},
+        {name:"Genspark",          url:"https://www.genspark.ai",                  desc:"AI 검색 & 슈퍼 에이전트 플랫폼"},
+        {name:"Microsoft Copilot", url:"https://copilot.microsoft.com",            desc:"Microsoft × OpenAI 통합 AI"},
+        {name:"Perplexity AI",     url:"https://www.perplexity.ai",                desc:"출처 기반 AI 심층 검색 엔진"},
+        {name:"Meta AI",           url:"https://www.meta.ai",                      desc:"Meta의 Llama 기반 AI 어시스턴트"},
+        {name:"Le Chat",           url:"https://chat.mistral.ai",                  desc:"Mistral AI의 유럽산 챗봇"},
+        {name:"HyperCLOVA X",      url:"https://clova-x.naver.com",               desc:"네이버 한국어 특화 대형 모델"},
       ],
-      "AI 에이전트": [
-        { name:"Character.AI",       url:"https://character.ai",                        desc:"AI 캐릭터와 자유로운 대화" },
-        { name:"You.com",            url:"https://you.com",                             desc:"에이전트 기반 AI 웹 검색" },
-        { name:"Poe",                url:"https://poe.com",                             desc:"여러 AI 모델을 한 곳에서" },
-        { name:"Phind",              url:"https://www.phind.com",                       desc:"개발자를 위한 AI 코드 검색" },
-        { name:"Notebook LM",        url:"https://notebooklm.google.com",               desc:"구글의 AI 리서치 노트북" },
+      "AI 에이전트":[
+        {name:"Character.AI",      url:"https://character.ai",                     desc:"AI 캐릭터와 자유로운 대화 플랫폼"},
+        {name:"You.com",           url:"https://you.com",                          desc:"에이전트 기반 AI 웹 검색"},
+        {name:"Poe",               url:"https://poe.com",                          desc:"여러 AI 모델을 한 곳에서"},
+        {name:"Phind",             url:"https://www.phind.com",                    desc:"개발자를 위한 AI 코드 검색"},
+        {name:"NotebookLM",        url:"https://notebooklm.google.com",            desc:"Google의 AI 리서치 노트북"},
       ]
     }
   },
-
   "AI 크리에이티브": {
-    icon: "🎨",
-    desc: "이미지·음악·영상·웹앱을 AI로 생성하는 크리에이티브 도구",
-    subs: {
-      "이미지 생성": [
-        { name:"Whisk",              url:"https://labs.google/fx/tools/whisk",          desc:"Google Labs의 이미지 리믹스 AI" },
-        { name:"Midjourney",         url:"https://www.midjourney.com",                  desc:"최고 품질의 AI 아트 생성 도구" },
-        { name:"DALL·E 3",           url:"https://openai.com/dall-e-3",                 desc:"OpenAI의 텍스트→이미지 변환 AI" },
-        { name:"Ideogram",           url:"https://ideogram.ai",                         desc:"텍스트 렌더링이 강한 이미지 AI" },
-        { name:"Leonardo AI",        url:"https://leonardo.ai",                         desc:"고품질 AI 아트 & 게임 에셋 생성" },
-        { name:"Stability AI",       url:"https://stability.ai",                        desc:"Stable Diffusion 오픈소스 개발사" },
-        { name:"Adobe Firefly",      url:"https://firefly.adobe.com",                   desc:"Adobe 생태계 생성형 AI 도구" },
-        { name:"Canva AI",           url:"https://www.canva.com",                       desc:"AI 내장 비주얼 디자인 플랫폼" },
+    icon:"🎨", grad:"bg-violet",
+    desc:"이미지·음악·영상·웹앱을 AI로 생성하는 크리에이티브 도구",
+    subs:{
+      "이미지 생성":[
+        {name:"Whisk",             url:"https://labs.google/fx/tools/whisk",       desc:"Google Labs의 이미지 리믹스 AI"},
+        {name:"Midjourney",        url:"https://www.midjourney.com",               desc:"최고 품질의 AI 아트 생성 도구"},
+        {name:"DALL·E 3",          url:"https://openai.com/dall-e-3",              desc:"OpenAI의 텍스트→이미지 변환 AI"},
+        {name:"Ideogram",          url:"https://ideogram.ai",                      desc:"텍스트 렌더링이 강한 이미지 AI"},
+        {name:"Leonardo AI",       url:"https://leonardo.ai",                      desc:"고품질 AI 아트 & 게임 에셋 생성"},
+        {name:"Stability AI",      url:"https://stability.ai",                     desc:"Stable Diffusion 오픈소스 개발사"},
+        {name:"Adobe Firefly",     url:"https://firefly.adobe.com",                desc:"Adobe 생태계 생성형 AI 도구"},
+        {name:"Canva AI",          url:"https://www.canva.com",                    desc:"AI 내장 비주얼 디자인 플랫폼"},
       ],
-      "음악 생성": [
-        { name:"SUNO",               url:"https://suno.com",                            desc:"텍스트 한 줄로 완성하는 AI 작곡" },
-        { name:"Udio",               url:"https://www.udio.com",                        desc:"고품질 AI 음악 & 가사 생성기" },
-        { name:"Mubert",             url:"https://mubert.com",                          desc:"AI 생성 로열티 프리 배경음악" },
+      "음악 생성":[
+        {name:"SUNO",              url:"https://suno.com",                         desc:"텍스트 한 줄로 완성하는 AI 작곡"},
+        {name:"Udio",              url:"https://www.udio.com",                     desc:"고품질 AI 음악 & 가사 생성기"},
+        {name:"Mubert",            url:"https://mubert.com",                       desc:"AI 생성 로열티 프리 배경음악"},
       ],
-      "비디오 생성": [
-        { name:"Runway",             url:"https://runwayml.com",                        desc:"AI 비디오 생성 & 편집 전문 도구" },
-        { name:"Sora",               url:"https://sora.com",                            desc:"OpenAI의 텍스트→비디오 생성 AI" },
-        { name:"Pika",               url:"https://pika.art",                            desc:"빠른 AI 쇼트폼 비디오 생성기" },
-        { name:"Kling AI",           url:"https://klingai.com",                         desc:"쾌이쇼우의 고품질 AI 영상 도구" },
-        { name:"HeyGen",             url:"https://www.heygen.com",                      desc:"AI 아바타 & 다국어 비디오 제작" },
+      "비디오 생성":[
+        {name:"Runway",            url:"https://runwayml.com",                     desc:"AI 비디오 생성 & 편집 전문 도구"},
+        {name:"Sora",              url:"https://sora.com",                         desc:"OpenAI의 텍스트→비디오 생성 AI"},
+        {name:"Pika",              url:"https://pika.art",                         desc:"빠른 AI 쇼트폼 비디오 생성기"},
+        {name:"Kling AI",          url:"https://klingai.com",                      desc:"쾌이쇼우의 고품질 AI 영상 도구"},
+        {name:"HeyGen",            url:"https://www.heygen.com",                   desc:"AI 아바타 & 다국어 비디오 제작"},
       ],
-      "웹/앱 빌더": [
-        { name:"Lovable",            url:"https://lovable.dev",                         desc:"AI로 풀스택 앱을 자동 빌드" },
-        { name:"V0",                 url:"https://v0.dev",                              desc:"Vercel의 AI UI 컴포넌트 생성기" },
-        { name:"Bolt",               url:"https://bolt.new",                            desc:"StackBlitz의 AI 웹 프로젝트 빌더" },
-        { name:"Framer",             url:"https://www.framer.com",                      desc:"AI 기반 노코드 웹사이트 빌더" },
+      "웹/앱 빌더":[
+        {name:"Lovable",           url:"https://lovable.dev",                      desc:"AI로 풀스택 앱을 자동 빌드"},
+        {name:"V0",                url:"https://v0.dev",                           desc:"Vercel의 AI UI 컴포넌트 생성기"},
+        {name:"Bolt",              url:"https://bolt.new",                         desc:"StackBlitz의 AI 웹 프로젝트 빌더"},
+        {name:"Framer",            url:"https://www.framer.com",                   desc:"AI 기반 노코드 웹사이트 빌더"},
       ]
     }
   },
-
   "개발 도구": {
-    icon: "💻",
-    desc: "AI 모델 허브, 코드 저장소, 코딩 어시스턴트 & 클라우드 API",
-    subs: {
-      "모델 & 데이터": [
-        { name:"Hugging Face",       url:"https://huggingface.co",                      desc:"AI 모델 & 데이터셋 최대 오픈 허브" },
-        { name:"Kaggle",             url:"https://www.kaggle.com",                      desc:"데이터 사이언스 경진대회 & 데이터셋" },
-        { name:"Weights & Biases",   url:"https://wandb.ai",                            desc:"ML 실험 추적 & 모델 모니터링" },
-        { name:"Replicate",          url:"https://replicate.com",                       desc:"클라우드로 AI 모델 실행 API" },
-        { name:"Together AI",        url:"https://www.together.ai",                     desc:"오픈소스 LLM 고속 클라우드 플랫폼" },
+    icon:"💻", grad:"bg-cyan",
+    desc:"AI 모델 허브, 코드 저장소, 코딩 어시스턴트 & 클라우드 API",
+    subs:{
+      "모델 & 데이터":[
+        {name:"Hugging Face",      url:"https://huggingface.co",                   desc:"AI 모델 & 데이터셋 최대 오픈 허브"},
+        {name:"Kaggle",            url:"https://www.kaggle.com",                   desc:"데이터 사이언스 경진대회 & 데이터셋"},
+        {name:"Weights & Biases",  url:"https://wandb.ai",                         desc:"ML 실험 추적 & 모델 모니터링"},
+        {name:"Replicate",         url:"https://replicate.com",                    desc:"클라우드로 AI 모델 실행 API"},
+        {name:"Together AI",       url:"https://www.together.ai",                  desc:"오픈소스 LLM 고속 클라우드 플랫폼"},
       ],
-      "코드 저장소": [
-        { name:"GitHub",             url:"https://github.com",                          desc:"세계 최대 코드 호스팅 & 협업 플랫폼" },
-        { name:"GitLab",             url:"https://gitlab.com",                          desc:"DevOps 올인원 통합 플랫폼" },
-        { name:"Bitbucket",          url:"https://bitbucket.org",                      desc:"Atlassian의 팀 코드 저장소" },
+      "코드 저장소":[
+        {name:"GitHub",            url:"https://github.com",                       desc:"세계 최대 코드 호스팅 & 협업 플랫폼"},
+        {name:"GitLab",            url:"https://gitlab.com",                       desc:"DevOps 올인원 통합 플랫폼"},
+        {name:"Bitbucket",         url:"https://bitbucket.org",                   desc:"Atlassian의 팀 코드 저장소"},
       ],
-      "AI 코딩": [
-        { name:"Cursor",             url:"https://cursor.sh",                           desc:"AI 네이티브 코드 에디터" },
-        { name:"GitHub Copilot",     url:"https://github.com/features/copilot",         desc:"GitHub × OpenAI 코딩 AI 도우미" },
-        { name:"Windsurf",           url:"https://windsurf.ai",                         desc:"Codeium의 AI 에이전트 IDE" },
-        { name:"Replit",             url:"https://replit.com",                          desc:"AI 지원 브라우저 기반 코딩 환경" },
-        { name:"Codeium",            url:"https://codeium.com",                         desc:"무료 AI 코드 자동완성 도구" },
-        { name:"Tabnine",            url:"https://www.tabnine.com",                     desc:"프라이버시 우선 AI 코드 보조" },
+      "AI 코딩":[
+        {name:"Cursor",            url:"https://cursor.sh",                        desc:"AI 네이티브 코드 에디터"},
+        {name:"GitHub Copilot",    url:"https://github.com/features/copilot",      desc:"GitHub × OpenAI 코딩 AI 도우미"},
+        {name:"Windsurf",          url:"https://windsurf.ai",                      desc:"Codeium의 AI 에이전트 IDE"},
+        {name:"Replit",            url:"https://replit.com",                       desc:"AI 지원 브라우저 기반 코딩 환경"},
+        {name:"Codeium",           url:"https://codeium.com",                      desc:"무료 AI 코드 자동완성 도구"},
+        {name:"Tabnine",           url:"https://www.tabnine.com",                  desc:"프라이버시 우선 AI 코드 보조"},
       ],
-      "API & 클라우드": [
-        { name:"Anthropic Console",  url:"https://console.anthropic.com",               desc:"Claude API 키 관리 & 사용량 콘솔" },
-        { name:"OpenAI Platform",    url:"https://platform.openai.com",                 desc:"GPT API & 플레이그라운드" },
-        { name:"Google AI Studio",   url:"https://aistudio.google.com",                 desc:"Gemini API 개발 & 테스트 환경" },
-        { name:"Groq Cloud",         url:"https://console.groq.com",                    desc:"초고속 LLM 추론 클라우드" },
-        { name:"Fireworks AI",       url:"https://fireworks.ai",                        desc:"고성능 오픈소스 LLM API" },
+      "API & 클라우드":[
+        {name:"Anthropic Console", url:"https://console.anthropic.com",            desc:"Claude API 키 관리 & 사용량 콘솔"},
+        {name:"OpenAI Platform",   url:"https://platform.openai.com",              desc:"GPT API & 플레이그라운드"},
+        {name:"Google AI Studio",  url:"https://aistudio.google.com",              desc:"Gemini API 개발 & 테스트 환경"},
+        {name:"Groq Cloud",        url:"https://console.groq.com",                 desc:"초고속 LLM 추론 클라우드"},
+        {name:"Fireworks AI",      url:"https://fireworks.ai",                     desc:"고성능 오픈소스 LLM API"},
       ]
     }
   },
-
   "AI 리서치": {
-    icon: "🔬",
-    desc: "AI 연구소, 최신 논문, 교육, 뉴스레터 & 커뮤니티 모음",
-    subs: {
-      "AI 연구소": [
-        { name:"Anthropic",          url:"https://www.anthropic.com",                   desc:"Claude 개발사 & AI 안전 연구 선도" },
-        { name:"OpenAI",             url:"https://openai.com",                          desc:"GPT·DALL·E·Sora 개발사" },
-        { name:"Google DeepMind",    url:"https://deepmind.google",                     desc:"구글의 핵심 AI 연구 조직" },
-        { name:"xAI",                url:"https://x.ai",                                desc:"Elon Musk의 Grok AI 연구소" },
-        { name:"Meta AI Research",   url:"https://ai.meta.com",                         desc:"Llama·SAM 등 오픈소스 AI 연구" },
-        { name:"Mistral AI",         url:"https://mistral.ai",                          desc:"유럽 대표 오픈소스 LLM 스타트업" },
-        { name:"Cohere",             url:"https://cohere.com",                          desc:"엔터프라이즈 AI & NLP 플랫폼" },
+    icon:"🔬", grad:"bg-emerald",
+    desc:"AI 연구소, 최신 논문, 교육, 뉴스레터 & 커뮤니티 모음",
+    subs:{
+      "AI 연구소":[
+        {name:"Anthropic",         url:"https://www.anthropic.com",                desc:"Claude 개발사 & AI 안전 연구 선도"},
+        {name:"OpenAI",            url:"https://openai.com",                       desc:"GPT·DALL·E·Sora 개발사"},
+        {name:"Google DeepMind",   url:"https://deepmind.google",                  desc:"구글의 핵심 AI 연구 조직"},
+        {name:"xAI",               url:"https://x.ai",                             desc:"Elon Musk의 Grok AI 연구소"},
+        {name:"Meta AI Research",  url:"https://ai.meta.com",                      desc:"Llama·SAM 등 오픈소스 AI 연구"},
+        {name:"Mistral AI",        url:"https://mistral.ai",                       desc:"유럽 대표 오픈소스 LLM 스타트업"},
+        {name:"Cohere",            url:"https://cohere.com",                       desc:"엔터프라이즈 AI & NLP 플랫폼"},
       ],
-      "논문 & 학습": [
-        { name:"Papers with Code",   url:"https://paperswithcode.com",                  desc:"AI 논문 + 코드 + SOTA 벤치마크" },
-        { name:"ArXiv CS.AI",        url:"https://arxiv.org/list/cs.AI/recent",         desc:"AI 분야 사전출판 논문 아카이브" },
-        { name:"Semantic Scholar",   url:"https://www.semanticscholar.org",             desc:"AI 기반 학술 논문 검색 & 분석" },
-        { name:"DeepLearning.AI",    url:"https://www.deeplearning.ai",                 desc:"Andrew Ng의 AI 교육 플랫폼" },
-        { name:"Fast.ai",            url:"https://www.fast.ai",                         desc:"실전 딥러닝 무료 온라인 강의" },
+      "논문 & 학습":[
+        {name:"Papers with Code",  url:"https://paperswithcode.com",               desc:"AI 논문 + 코드 + SOTA 벤치마크"},
+        {name:"ArXiv CS.AI",       url:"https://arxiv.org/list/cs.AI/recent",      desc:"AI 분야 사전출판 논문 아카이브"},
+        {name:"Semantic Scholar",  url:"https://www.semanticscholar.org",          desc:"AI 기반 학술 논문 검색 & 분석"},
+        {name:"DeepLearning.AI",   url:"https://www.deeplearning.ai",              desc:"Andrew Ng의 AI 교육 플랫폼"},
+        {name:"Fast.ai",           url:"https://www.fast.ai",                      desc:"실전 딥러닝 무료 온라인 강의"},
       ],
-      "뉴스 & 커뮤니티": [
-        { name:"The Batch",          url:"https://www.deeplearning.ai/the-batch/",      desc:"Andrew Ng의 주간 AI 뉴스레터" },
-        { name:"The Rundown AI",     url:"https://www.therundown.ai",                   desc:"매일 받아보는 AI 트렌드 요약" },
-        { name:"AI News",            url:"https://www.artificialintelligence-news.com", desc:"AI 업계 최신 뉴스 & 분석" },
-        { name:"Hacker News",        url:"https://news.ycombinator.com",                desc:"YC 기반 테크 커뮤니티 토론" },
-        { name:"r/MachineLearning",  url:"https://www.reddit.com/r/MachineLearning/",   desc:"머신러닝 Reddit 커뮤니티" },
+      "뉴스 & 커뮤니티":[
+        {name:"The Batch",         url:"https://www.deeplearning.ai/the-batch/",   desc:"Andrew Ng의 주간 AI 뉴스레터"},
+        {name:"The Rundown AI",    url:"https://www.therundown.ai",                desc:"매일 받아보는 AI 트렌드 요약"},
+        {name:"AI News",           url:"https://www.artificialintelligence-news.com", desc:"AI 업계 최신 뉴스 & 분석"},
+        {name:"Hacker News",       url:"https://news.ycombinator.com",             desc:"YC 기반 테크 커뮤니티 토론"},
+        {name:"r/MachineLearning", url:"https://www.reddit.com/r/MachineLearning/", desc:"머신러닝 Reddit 커뮤니티"},
       ]
     }
   }
 };
 
-/* ════════════════════════════════════════
+/* ══════════════════════════════════════
    STATE
-════════════════════════════════════════ */
-let activeCat = Object.keys(DATA)[0];
-let activeSub = Object.keys(DATA[activeCat].subs)[0];
-let searchQuery = '';
+══════════════════════════════════════ */
+let cat  = Object.keys(DATA)[0];
+let sub  = Object.keys(DATA[cat].subs)[0];
+let q    = '';
 
-/* ════════════════════════════════════════
+/* ══════════════════════════════════════
    HELPERS
-════════════════════════════════════════ */
-const favicon = url => {
+══════════════════════════════════════ */
+const fav = url => {
   try { return `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=64`; }
   catch { return ''; }
 };
 
-const domain = url => {
-  try { return new URL(url).hostname.replace('www.',''); }
+const dom = url => {
+  try { return new URL(url).hostname.replace(/^www\./,''); }
   catch { return url; }
 };
 
-const totalCount = () =>
-  Object.values(DATA).reduce((s, c) =>
-    s + Object.values(c.subs).flat().length, 0);
+const catTotal = c => Object.values(DATA[c].subs).flat().length;
 
-const catCount = cat =>
-  Object.values(DATA[cat].subs).flat().length;
+const allTotal = () => Object.keys(DATA).reduce((s,c) => s + catTotal(c), 0);
 
-/* ════════════════════════════════════════
-   RENDER — HEADER NAV
-════════════════════════════════════════ */
-function renderHeaderNav() {
-  document.getElementById('headerNav').innerHTML =
-    Object.entries(DATA).map(([cat, d]) => `
-      <button
-        class="nav-tab ${cat === activeCat ? 'active' : ''}"
-        onclick="selectCat('${cat}')"
-      >
-        <span class="t-icon">${d.icon}</span>
-        ${cat}
-        <span class="nav-count">${catCount(cat)}</span>
-      </button>
-    `).join('');
-}
+/* ══════════════════════════════════════
+   BENTO SIZE LOGIC
+   Pattern per 7: indices 0,5 → wide ; rest → normal
+══════════════════════════════════════ */
+const isWide = i => (i % 7 === 0 || i % 7 === 5);
 
-/* ════════════════════════════════════════
-   RENDER — SIDEBAR
-════════════════════════════════════════ */
-function renderSidebar() {
-  const subs = DATA[activeCat].subs;
-  const allCount = Object.values(subs).flat().length;
+/* ══════════════════════════════════════
+   CARD HTML
+══════════════════════════════════════ */
+function cardHTML(item, idx, catKey, isFeatured) {
+  const wide = isWide(idx);
+  const grad = isFeatured ? DATA[catKey].grad : '';
 
-  document.getElementById('sidebar').innerHTML = `
-    <div class="sb-label">전체</div>
-    <button class="sb-item ${activeSub === '__all' ? 'active' : ''}"
-            onclick="selectSub('__all')">
-      <span class="sb-dot"></span>
-      전체 보기
-      <span class="sb-count">${allCount}</span>
-    </button>
+  const faviconEl = `
+    <div class="bc-favicon-wrap">
+      <img class="bc-favicon"
+           src="${fav(item.url)}"
+           alt="${item.name}" loading="lazy"
+           onerror="this.parentNode.innerHTML='<span style=font-size:16px;font-weight:700;color:var(--a)>${item.name[0]}</span>'" />
+    </div>`;
 
-    <div class="sb-divider"></div>
-    <div class="sb-label">소분류</div>
-
-    ${Object.entries(subs).map(([s, items]) => `
-      <button class="sb-item ${activeSub === s ? 'active' : ''}"
-              onclick="selectSub('${s}')">
-        <span class="sb-dot"></span>
-        ${s}
-        <span class="sb-count">${items.length}</span>
-      </button>
-    `).join('')}
-  `;
-}
-
-/* ════════════════════════════════════════
-   RENDER — CARD
-════════════════════════════════════════ */
-function cardHTML(item) {
-  return `
-    <a class="card" href="${item.url}" target="_blank" rel="noopener noreferrer">
-      <div class="card-header">
-        <div class="card-icon-wrap">
-          <img class="card-favicon"
-               src="${favicon(item.url)}"
-               alt="${item.name}"
-               loading="lazy"
-               onerror="this.parentNode.innerHTML='<span style=font-size:14px>${item.name[0]}</span>'" />
+  if (wide) {
+    return `
+      <a class="bc-card bc-wide ${isFeatured ? 'bc-featured '+grad : ''}"
+         href="${item.url}" target="_blank" rel="noopener">
+        <div class="bc-in">
+          ${faviconEl}
+          <div class="bc-body">
+            <div class="bc-name">${item.name}</div>
+            <div class="bc-desc">${item.desc}</div>
+            <div class="bc-foot">
+              <span class="bc-dot"></span>
+              <span class="bc-domain">${dom(item.url)}</span>
+            </div>
+          </div>
+          <i class="bc-arrow">↗</i>
         </div>
-        <i class="card-arrow">↗</i>
+      </a>`;
+  }
+
+  return `
+    <a class="bc-card ${isFeatured ? 'bc-featured '+grad : ''}"
+       href="${item.url}" target="_blank" rel="noopener">
+      <div class="bc-in">
+        <div class="bc-head-row">
+          ${faviconEl}
+          <i class="bc-arrow">↗</i>
+        </div>
+        <div class="bc-name">${item.name}</div>
+        <div class="bc-desc">${item.desc}</div>
+        <div class="bc-foot">
+          <span class="bc-dot"></span>
+          <span class="bc-domain">${dom(item.url)}</span>
+        </div>
       </div>
-      <div class="card-name">${item.name}</div>
-      <div class="card-desc">${item.desc}</div>
-      <div class="card-footer">
-        <span class="card-dot"></span>
-        <span class="card-domain">${domain(item.url)}</span>
-      </div>
-    </a>
-  `;
+    </a>`;
 }
 
-/* ════════════════════════════════════════
-   RENDER — CONTENT
-════════════════════════════════════════ */
-function renderContent() {
-  const catData = DATA[activeCat];
-  const area = document.getElementById('contentArea');
-  area.setAttribute('data-cat', activeCat);
+/* ══════════════════════════════════════
+   RENDER — HEADER NAV
+══════════════════════════════════════ */
+function renderNav() {
+  document.getElementById('hNav').innerHTML =
+    Object.entries(DATA).map(([c,d]) => `
+      <button class="h-tab ${c===cat?'active':''}" onclick="selCat('${c}')">
+        <span class="ti">${d.icon}</span>
+        ${c}
+        <span class="tab-badge">${catTotal(c)}</span>
+      </button>`).join('');
+}
 
-  /* ── SEARCH MODE ── */
-  if (searchQuery.trim().length > 0) {
-    const q = searchQuery.toLowerCase();
+/* ══════════════════════════════════════
+   RENDER — SIDEBAR
+══════════════════════════════════════ */
+function renderSB() {
+  const subs = DATA[cat].subs;
+  const total = Object.values(subs).flat().length;
+  document.getElementById('sb').innerHTML = `
+    <div class="sb-lbl">탐색</div>
+    <button class="sb-item ${sub==='__all'?'active':''}" onclick="selSub('__all')">
+      <span class="sb-dot"></span>전체 보기<span class="sb-n">${total}</span>
+    </button>
+    <div class="sb-sep"></div>
+    <div class="sb-lbl">소분류</div>
+    ${Object.entries(subs).map(([s,items]) => `
+      <button class="sb-item ${sub===s?'active':''}" onclick="selSub('${s}')">
+        <span class="sb-dot"></span>${s}
+        <span class="sb-n">${items.length}</span>
+      </button>`).join('')}`;
+}
+
+/* ══════════════════════════════════════
+   RENDER — CONTENT
+══════════════════════════════════════ */
+function renderContent() {
+  const area = document.getElementById('ca');
+  area.setAttribute('data-cat', cat);
+
+  /* — SEARCH — */
+  if (q.trim()) {
+    const lq = q.toLowerCase();
     const hits = [];
-    Object.values(DATA).forEach(c =>
-      Object.values(c.subs).forEach(items =>
-        items.forEach(item => {
-          if (
-            item.name.toLowerCase().includes(q) ||
-            item.desc.toLowerCase().includes(q) ||
-            domain(item.url).includes(q)
-          ) hits.push(item);
-        })
-      )
-    );
+    Object.values(DATA).forEach(d =>
+      Object.values(d.subs).forEach(items =>
+        items.forEach(it => {
+          if (it.name.toLowerCase().includes(lq) ||
+              it.desc.toLowerCase().includes(lq) ||
+              dom(it.url).includes(lq)) hits.push(it);
+        })));
 
     area.innerHTML = `
-      <div class="search-results-header">
-        "<strong>${searchQuery}</strong>" 검색 결과 — <strong>${hits.length}</strong>개 서비스
+      <div class="sr-header">
+        "<strong>${q}</strong>" 검색 결과 — <strong>${hits.length}</strong>개 서비스
       </div>
       ${hits.length
-        ? `<div class="card-grid">${hits.map(cardHTML).join('')}</div>`
-        : `<div class="no-results">
-             <div class="nr-icon">🔍</div>
-             <p>검색 결과가 없습니다.</p>
-           </div>`
-      }
-    `;
+        ? `<div class="bento">${hits.map((it,i) => cardHTML(it,i,cat,i===0)).join('')}</div>`
+        : `<div class="no-results"><div class="nr-ico">🔍</div><p>검색 결과가 없습니다.</p></div>`}`;
     return;
   }
 
-  /* ── BREADCRUMB ── */
-  const crumb = `
-    <div class="breadcrumb">
-      <span>AI Hub</span>
-      <span class="sep">›</span>
-      <span>${activeCat}</span>
-      ${activeSub !== '__all' ? `<span class="sep">›</span><span class="current">${activeSub}</span>` : ''}
-    </div>
-  `;
+  const catD = DATA[cat];
+  const curItems = sub === '__all'
+    ? Object.values(catD.subs).flat()
+    : (catD.subs[sub] || []);
 
-  /* ── PAGE HEADER ── */
-  const subCount = activeSub === '__all'
-    ? Object.values(catData.subs).flat().length
-    : (catData.subs[activeSub] || []).length;
+  /* — BREADCRUMB — */
+  const bc = `
+    <div class="bc">
+      <span>AI Hub</span><span class="sep">›</span>
+      <span>${cat}</span>
+      ${sub !== '__all' ? `<span class="sep">›</span><span class="cur">${sub}</span>` : ''}
+    </div>`;
 
-  const pageHead = `
-    <div class="page-head">
-      <div class="page-title-wrap">
-        <div class="page-eyebrow">${activeCat}</div>
-        <div class="page-title">
-          ${activeSub === '__all' ? '전체 서비스' : activeSub}
-        </div>
-        <div class="page-desc">${catData.desc}</div>
-      </div>
-      <div class="page-meta">
-        <div class="meta-chip">
-          <span class="dot"></span>
-          ${subCount}개 서비스
-        </div>
-      </div>
-    </div>
-  `;
-
-  /* ── STATS (전체 보기일 때만) ── */
-  let statsHTML = '';
-  if (activeSub === '__all') {
-    const subEntries = Object.entries(catData.subs);
-    statsHTML = `
-      <div class="stat-strip">
-        ${subEntries.map(([s, items]) => `
-          <div class="stat-tile">
-            <div class="stat-num">${items.length}</div>
-            <div class="stat-lbl">${s}</div>
-          </div>
-        `).join('')}
-      </div>
-    `;
-  }
-
-  /* ── CARD SECTIONS ── */
-  let sectionsHTML = '';
-  if (activeSub === '__all') {
-    sectionsHTML = Object.entries(catData.subs).map(([s, items]) => `
+  /* — PAGE HEAD — */
+  const ph = `
+    <div class="pg-head">
       <div>
-        <div class="sub-head">
-          <span class="sub-head-text">${s}</span>
-          <span class="sub-head-line"></span>
-          <span class="sub-head-count">${items.length}</span>
-        </div>
-        <div class="card-grid">${items.map(cardHTML).join('')}</div>
+        <div class="pg-eyebrow">${cat}</div>
+        <div class="pg-title">${sub === '__all' ? '전체 서비스' : sub}</div>
+        <div class="pg-desc">${catD.desc}</div>
       </div>
-    `).join('');
-  } else {
-    const items = catData.subs[activeSub] || [];
-    sectionsHTML = `<div class="card-grid">${items.map(cardHTML).join('')}</div>`;
+      <div class="pg-chip">
+        <span class="dot"></span>${curItems.length}개 서비스
+      </div>
+    </div>`;
+
+  /* — OVERVIEW STAT TILES — */
+  let ovHTML = '';
+  if (sub === '__all') {
+    const total = Object.values(catD.subs).flat().length;
+    ovHTML = `
+      <div class="overview-grid">
+        ${Object.entries(catD.subs).map(([s, items]) => `
+          <div class="ov-card" onclick="selSub('${s}')">
+            <div class="ov-num">${items.length}</div>
+            <div class="ov-lbl">${s}</div>
+            <div class="ov-bar">
+              <div class="ov-bar-fill" style="width:${Math.round(items.length/total*100)}%"></div>
+            </div>
+          </div>`).join('')}
+      </div>`;
   }
 
-  area.innerHTML = crumb + pageHead + statsHTML + sectionsHTML;
+  /* — BENTO GRID SECTIONS — */
+  let gridHTML = '';
+  if (sub === '__all') {
+    gridHTML = Object.entries(catD.subs).map(([s, items]) => `
+      <div>
+        <div class="sec-head">
+          <span class="sec-head-text">${s}</span>
+          <span class="sec-head-line"></span>
+          <span class="sec-head-n">${items.length}</span>
+        </div>
+        <div class="bento">
+          ${items.map((it,i) => cardHTML(it, i, cat, i===0)).join('')}
+        </div>
+      </div>`).join('');
+  } else {
+    gridHTML = `
+      <div class="bento">
+        ${curItems.map((it,i) => cardHTML(it, i, cat, i===0)).join('')}
+      </div>`;
+  }
+
+  area.innerHTML = bc + ph + ovHTML + gridHTML;
 }
 
-/* ════════════════════════════════════════
-   RENDER — ALL
-════════════════════════════════════════ */
-function renderAll() {
-  renderHeaderNav();
-  renderSidebar();
-  renderContent();
-}
-
-/* ════════════════════════════════════════
+/* ══════════════════════════════════════
    EVENTS
-════════════════════════════════════════ */
-function selectCat(cat) {
-  activeCat = cat;
-  activeSub = Object.keys(DATA[cat].subs)[0];
-  searchQuery = '';
-  document.getElementById('searchInput').value = '';
+══════════════════════════════════════ */
+function selCat(c) {
+  cat = c;
+  sub = Object.keys(DATA[c].subs)[0];
+  q   = '';
+  document.getElementById('si').value = '';
   renderAll();
 }
 
-function selectSub(sub) {
-  activeSub = sub;
+function selSub(s) {
+  sub = s;
   renderAll();
 }
 
-function handleSearch(val) {
-  searchQuery = val;
+function onSearch(v) {
+  q = v;
   renderContent();
 }
 
-/* ════════════════════════════════════════
+/* ══════════════════════════════════════
    INIT
-════════════════════════════════════════ */
+══════════════════════════════════════ */
+function renderAll() {
+  renderNav();
+  renderSB();
+  renderContent();
+}
+
 renderAll();
 </script>
 </body>
