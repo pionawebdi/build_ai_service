@@ -775,11 +775,30 @@ const AMBIENT = {
   "UI/UX 디자인":   ['rgba(251,146,60,0.1)',   'rgba(251,191,36,0.06)'],
 };
 
+/* accent tokens per category — applied to :root so header inherits */
+const ACCENTS = {
+  "AI 어시스턴트":  {a:'#a78bfa', a2:'#818cf8', ag:'rgba(167,139,250,.18)', ad:'rgba(167,139,250,.09)', ar:'167,139,250'},
+  "AI 크리에이티브": {a:'#f472b6', a2:'#e879f9', ag:'rgba(244,114,182,.18)', ad:'rgba(244,114,182,.09)', ar:'244,114,182'},
+  "개발 도구":       {a:'#22d3ee', a2:'#60a5fa', ag:'rgba(34,211,238,.18)',  ad:'rgba(34,211,238,.09)',  ar:'34,211,238'},
+  "AI 리서치":       {a:'#34d399', a2:'#2dd4bf', ag:'rgba(52,211,153,.18)',  ad:'rgba(52,211,153,.09)',  ar:'52,211,153'},
+  "UI/UX 디자인":   {a:'#fb923c', a2:'#fbbf24', ag:'rgba(251,146,60,.18)',  ad:'rgba(251,146,60,.09)',  ar:'251,146,60'},
+};
+
 function setAmbient(c) {
   const [c1, c2] = AMBIENT[c] || AMBIENT["AI 어시스턴트"];
   document.body.style.backgroundImage =
     `radial-gradient(ellipse at 18% 12%, ${c1} 0%, transparent 52%),
      radial-gradient(ellipse at 82% 88%, ${c2} 0%, transparent 52%)`;
+
+  const acc = ACCENTS[c];
+  if (acc) {
+    const r = document.documentElement.style;
+    r.setProperty('--a',  acc.a);
+    r.setProperty('--a2', acc.a2);
+    r.setProperty('--ag', acc.ag);
+    r.setProperty('--ad', acc.ad);
+    r.setProperty('--ar', acc.ar);
+  }
 }
 
 /* ══════════════════════════════════════
