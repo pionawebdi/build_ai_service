@@ -499,6 +499,10 @@
       background: linear-gradient(145deg, rgba(16,185,129,.24) 0%, rgba(20,184,166,.1) 100%);
       border: 1px solid rgba(16,185,129,.28) !important;
     }
+    .bg-orange  {
+      background: linear-gradient(145deg, rgba(251,146,60,.24) 0%, rgba(251,191,36,.1) 100%);
+      border: 1px solid rgba(251,146,60,.28) !important;
+    }
 
     /* ══════════════════════════════════════
        CATEGORY ACCENT TOKENS
@@ -507,6 +511,7 @@
     [data-cat="AI 크리에이티브"] { --a:#f472b6; --a2:#e879f9; --ag:rgba(244,114,182,.18); --ad:rgba(244,114,182,.09); --ar:244,114,182; }
     [data-cat="개발 도구"]       { --a:#22d3ee; --a2:#60a5fa; --ag:rgba(34,211,238,.18);  --ad:rgba(34,211,238,.09);  --ar:34,211,238;  }
     [data-cat="AI 리서치"]       { --a:#34d399; --a2:#2dd4bf; --ag:rgba(52,211,153,.18);  --ad:rgba(52,211,153,.09);  --ar:52,211,153;  }
+    [data-cat="UI/UX 디자인"]   { --a:#fb923c; --a2:#fbbf24; --ag:rgba(251,146,60,.18);  --ad:rgba(251,146,60,.09);  --ar:251,146,60;  }
 
     /* ══════════════════════════════════════
        SEARCH RESULTS
@@ -677,6 +682,37 @@ const DATA = {
       ]
     }
   },
+  "UI/UX 디자인": {
+    icon:"🖌️", grad:"bg-orange",
+    desc:"UI/UX 레퍼런스, 디자인 도구, 컬러·타이포그래피 & 학습 리소스",
+    subs:{
+      "레퍼런스 & 영감":[
+        {name:"Dribbble",          url:"https://dribbble.com",                     desc:"전 세계 디자이너 포트폴리오 & 트렌드 레퍼런스"},
+        {name:"Behance",           url:"https://www.behance.net",                  desc:"Adobe 운영 크리에이티브 작품 플랫폼"},
+        {name:"Awwwards",          url:"https://www.awwwards.com",                 desc:"최고 수준 웹 디자인 어워드 & 레퍼런스"},
+        {name:"Mobbin",            url:"https://mobbin.com",                       desc:"실제 앱 UI 패턴 & 스크린 플로우 아카이브"},
+        {name:"Refero",            url:"https://refero.design",                    desc:"실제 앱 UI/UX 플로우 레퍼런스 모음"},
+        {name:"UI Garage",         url:"https://uigarage.net",                     desc:"앱·웹 UI 패턴 & 디자인 영감"},
+        {name:"Land-book",         url:"https://land-book.com",                    desc:"고품질 랜딩 페이지 디자인 모음"},
+        {name:"SaaS Pages",        url:"https://saaspages.xyz",                    desc:"SaaS 제품 랜딩 페이지 레퍼런스"},
+      ],
+      "디자인 도구":[
+        {name:"Figma",             url:"https://www.figma.com",                    desc:"협업 기반 UI/UX 디자인 표준 툴"},
+        {name:"Figma Community",   url:"https://www.figma.com/community",          desc:"무료 Figma 템플릿·컴포넌트·플러그인"},
+        {name:"Coolors",           url:"https://coolors.co",                       desc:"AI 기반 컬러 팔레트 생성 & 탐색"},
+        {name:"Fontpair",          url:"https://www.fontpair.co",                  desc:"어울리는 Google 폰트 조합 추천"},
+        {name:"Fonts In Use",      url:"https://fontsinuse.com",                   desc:"실제 디자인에서 사용된 서체 레퍼런스"},
+        {name:"Spline",            url:"https://spline.design",                    desc:"브라우저에서 바로 쓰는 3D 디자인 툴"},
+      ],
+      "학습 & 가이드":[
+        {name:"Laws of UX",        url:"https://lawsofux.com",                     desc:"UX 원칙과 심리학 기반 디자인 가이드"},
+        {name:"Nielsen Norman",    url:"https://www.nngroup.com",                  desc:"UX 리서치 & 사용성 평가 기관"},
+        {name:"Smashing Magazine", url:"https://www.smashingmagazine.com",         desc:"웹 디자인·개발 심층 아티클 & 튜토리얼"},
+        {name:"UX Collective",     url:"https://uxdesign.cc",                      desc:"UX 디자이너를 위한 큐레이션 미디엄"},
+        {name:"Checklist Design",  url:"https://www.checklist.design",             desc:"UI 컴포넌트별 베스트 프랙티스 체크리스트"},
+      ]
+    }
+  },
   "AI 리서치": {
     icon:"🔬", grad:"bg-emerald",
     desc:"AI 연구소, 최신 논문, 교육, 뉴스레터 & 커뮤니티 모음",
@@ -736,6 +772,7 @@ const AMBIENT = {
   "AI 크리에이티브": ['rgba(236,72,153,0.09)',  'rgba(167,139,250,0.06)'],
   "개발 도구":       ['rgba(6,182,212,0.09)',   'rgba(59,130,246,0.06)'],
   "AI 리서치":       ['rgba(16,185,129,0.09)',  'rgba(20,184,166,0.06)'],
+  "UI/UX 디자인":   ['rgba(251,146,60,0.1)',   'rgba(251,191,36,0.06)'],
 };
 
 function setAmbient(c) {
