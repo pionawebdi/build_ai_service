@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <style>
     /* ══════════════════════════════════════
        TOKENS — Glassmorphism Light 2025
@@ -117,18 +118,6 @@
     .h-tab.active { color: var(--a); font-weight: 600; }
     .h-tab.active::after { opacity: 1; }
     .h-tab .ti { font-size: 0.99rem; }
-
-    .tab-badge {
-      font-size: 0.76rem; font-weight: 600;
-      padding: 1px 5px; border-radius: 99px;
-      background: rgba(0,0,0,0.05); color: var(--tx3);
-      border: 1px solid rgba(0,0,0,0.07); transition: all .15s;
-    }
-
-    .h-tab.active .tab-badge {
-      background: var(--ad); color: var(--a);
-      border-color: rgba(var(--ar),.3);
-    }
 
     .h-right {
       display: flex; align-items: center;
@@ -546,6 +535,647 @@
       .content { padding: 16px 14px 40px; }
       .bento { grid-template-columns: 1fr 1fr; gap: 10px; }
     }
+
+    /* ══════════════════════════════════════
+       Kaggle Learn inspired illustration refresh
+    ══════════════════════════════════════ */
+    :root {
+      --font: 'Roboto', 'Noto Sans KR', sans-serif;
+      --bg-card: #ffffff;
+      --bg-hov: #f8fafc;
+      --bg-hdr: #ffffff;
+      --bg-sb: #ffffff;
+      --tx1: #202124;
+      --tx2: #4b5563;
+      --tx3: #7b8794;
+      --br: #e5e7eb;
+      --br-hv: #cfd6df;
+      --a: #20beff;
+      --a2: #1097d5;
+      --ag: rgba(32,190,255,0.14);
+      --ad: rgba(32,190,255,0.08);
+      --ar: 32,190,255;
+      --hh: 64px;
+      --sw: 236px;
+      --r: 8px;
+      --yellow: #ffe15a;
+      --blue: #20beff;
+      --green: #1fbf75;
+      --coral: #ff7a59;
+      --ink: #202124;
+    }
+
+    html { background: #ffffff; }
+
+    body {
+      background: #ffffff;
+      color: var(--tx1);
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--br);
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .h-brand {
+      border-right: 1px solid var(--br);
+      padding: 0 22px;
+      justify-content: flex-start;
+    }
+
+    .brand-name {
+      color: var(--blue);
+      font-size: 1.52rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -.2px;
+      text-transform: lowercase;
+      white-space: nowrap;
+    }
+
+    .brand-name-accent {
+      color: var(--ink);
+    }
+
+    .h-nav {
+      gap: 0;
+      padding: 0 16px;
+    }
+
+    .h-tab {
+      color: #5f6368;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0 10px;
+    }
+
+    .h-tab::after {
+      left: 12px;
+      right: 12px;
+      height: 3px;
+      background: var(--ink);
+      border-radius: 3px 3px 0 0;
+    }
+
+    .h-tab:hover,
+    .h-tab.active {
+      color: var(--ink);
+    }
+
+    .h-tab.active {
+      font-weight: 700;
+    }
+
+    .search-inp {
+      width: 250px;
+      background: #ffffff;
+      border: 1px solid #dadce0;
+      border-radius: 999px;
+      color: var(--ink);
+      padding: 9px 14px 9px 36px;
+      font-size: 0.93rem;
+    }
+
+    .search-inp:focus {
+      width: 292px;
+      background: #ffffff;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(32,190,255,.16);
+    }
+
+    .search-wrap svg {
+      left: 13px;
+      color: #5f6368;
+    }
+
+    aside {
+      background: #ffffff;
+      border-right: 1px solid var(--br);
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      padding: 14px 10px 96px;
+    }
+
+    .sb-lbl {
+      color: #9aa0a6;
+      font-size: 0.72rem;
+      letter-spacing: .7px;
+      padding: 14px 12px 8px;
+    }
+
+    .sb-sep {
+      background: #eef0f2;
+      margin: 9px 2px;
+    }
+
+    .sb-item {
+      position: relative;
+      gap: 10px;
+      color: #5f6368;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 0.87rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .sb-item::before {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 7px;
+      bottom: 7px;
+      width: 3px;
+      border-radius: 0 3px 3px 0;
+      background: transparent;
+    }
+
+    .sb-item:hover {
+      background: #f6f8fa;
+      color: var(--ink);
+    }
+
+    .sb-item.active {
+      background: #f1f3f4;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .sb-item.active::before {
+      background: var(--ink);
+    }
+
+    .sb-dot {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #c4c7c5;
+      border-radius: 5px;
+      background: #ffffff;
+    }
+
+    .sb-item.active .sb-dot {
+      background: var(--blue);
+      border-color: var(--blue);
+      box-shadow: inset 0 0 0 4px #ffffff;
+    }
+
+    .sb-ico {
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #5f6368;
+      font-size: 0.98rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .sb-item:hover .sb-ico,
+    .sb-item.active .sb-ico {
+      color: var(--ink);
+    }
+
+    .sb-n {
+      margin-left: auto;
+      background: transparent;
+      color: #9aa0a6;
+      font-size: 0.72rem;
+      white-space: nowrap;
+    }
+
+    .sb-item.active .sb-n {
+      background: transparent;
+      color: #5f6368;
+    }
+
+    .sb-visitor-inner {
+      background: #ffffff;
+      border: 1px solid var(--br);
+      border-radius: 8px;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .sb-visitor-ico {
+      background: #fff7d1;
+      border: 1px solid #f2d45d;
+      border-radius: 50%;
+      color: var(--ink);
+    }
+
+    main {
+      background: #ffffff;
+    }
+
+    .content {
+      padding: 30px 36px 70px;
+    }
+
+    .bc {
+      color: #80868b;
+      margin-bottom: 18px;
+    }
+
+    .bc .cur,
+    .bc .sep {
+      color: #5f6368;
+    }
+
+    .learn-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      align-items: center;
+      gap: 32px;
+      min-height: 270px;
+      padding: 36px 0 42px;
+      border-bottom: 1px solid #eef0f2;
+      margin-bottom: 26px;
+    }
+
+    .hero-kicker {
+      color: #5f6368;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero-copy h1 {
+      max-width: 620px;
+      color: var(--ink);
+      font-size: 2.36rem;
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: 0;
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .hero-copy p {
+      max-width: 580px;
+      color: #5f6368;
+      font-size: 1.02rem;
+      line-height: 1.72;
+      margin-top: 16px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .hero-pill {
+      border: 1px solid #dadce0;
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--ink);
+      cursor: pointer;
+      font-family: var(--font);
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 9px 18px;
+      transition: border-color .15s, box-shadow .15s, transform .15s;
+    }
+
+    .hero-pill:hover {
+      border-color: #9aa0a6;
+      box-shadow: 0 2px 7px rgba(60,64,67,.14);
+      transform: translateY(-1px);
+    }
+
+    .hero-count {
+      color: #5f6368;
+      font-size: 0.91rem;
+      font-weight: 600;
+    }
+
+    .hero-art {
+      width: 100%;
+      max-width: 430px;
+      justify-self: end;
+    }
+
+    .hero-art img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: contrast(1.14) saturate(.92);
+    }
+
+    .pg-head {
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .pg-eyebrow {
+      color: #5f6368;
+      letter-spacing: .6px;
+    }
+
+    .pg-title {
+      color: var(--ink);
+      background: none;
+      -webkit-text-fill-color: currentColor;
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .pg-desc {
+      color: #6b7280;
+      max-width: 720px;
+    }
+
+    .pg-chip {
+      background: #ffffff;
+      border: 1px solid #dadce0;
+      border-radius: 999px;
+      color: #5f6368;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .pg-chip .dot {
+      background: var(--blue);
+      box-shadow: none;
+    }
+
+    .overview-grid {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .ov-card {
+      background: #ffffff;
+      border: 1px solid var(--br);
+      border-radius: 8px;
+      box-shadow: none;
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .ov-card::before {
+      display: none;
+    }
+
+    .ov-card:hover {
+      border-color: #cfd6df;
+      box-shadow: 0 3px 10px rgba(60,64,67,.12);
+      transform: translateY(-2px);
+    }
+
+    .ov-num {
+      color: var(--ink);
+      background: none;
+      -webkit-text-fill-color: currentColor;
+      font-size: 1.72rem;
+      margin-top: 0;
+    }
+
+    .ov-lbl {
+      color: #5f6368;
+    }
+
+    .ov-bar {
+      background: #eef0f2;
+    }
+
+    .ov-bar-fill {
+      background: var(--blue);
+    }
+
+    .sec-head {
+      margin: 32px 0 12px;
+    }
+
+    .sec-head-text {
+      color: var(--ink);
+      font-size: 1.02rem;
+      font-weight: 800;
+    }
+
+    .sec-head-line {
+      background: #eef0f2;
+    }
+
+    .sec-head-n {
+      background: #f1f3f4;
+      border: 1px solid #e5e7eb;
+      color: #5f6368;
+      border-radius: 999px;
+      padding: 2px 8px;
+    }
+
+    .bento {
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .bc-card {
+      background: #ffffff;
+      border: 1px solid var(--br);
+      border-radius: 8px;
+      box-shadow: none;
+      overflow: hidden;
+      transition: transform .16s, border-color .16s, box-shadow .16s;
+    }
+
+    .bc-card::before,
+    .bc-card::after,
+    .bc-featured::after {
+      display: none;
+    }
+
+    .bc-card:hover {
+      border-color: #cfd6df;
+      box-shadow: 0 4px 14px rgba(60,64,67,.13);
+      transform: translateY(-2px);
+    }
+
+    .bc-in {
+      padding: 16px 17px 15px;
+      gap: 9px;
+    }
+
+    .bc-favicon-wrap {
+      width: 34px;
+      height: 34px;
+      background: #ffffff;
+      border: 1px solid #dadce0;
+      border-radius: 7px;
+      box-shadow: none;
+    }
+
+    .bc-favicon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .bc-name {
+      color: var(--ink);
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .bc-desc {
+      color: #5f6368;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .bc-foot {
+      border-top: 1px solid #eef0f2;
+      padding-top: 10px;
+    }
+
+    .bc-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--blue);
+      opacity: 1;
+      box-shadow: none;
+    }
+
+    .bc-domain {
+      color: #80868b;
+      font-size: 0.82rem;
+    }
+
+    .bc-card:hover .bc-domain {
+      color: #147faf;
+    }
+
+    .bc-arrow {
+      color: var(--ink);
+      opacity: .22;
+    }
+
+    .bc-card:hover .bc-arrow {
+      opacity: 1;
+    }
+
+    .bg-indigo,
+    .bg-violet,
+    .bg-cyan,
+    .bg-emerald,
+    .bg-orange {
+      background: #ffffff;
+      border: 1px solid var(--br) !important;
+    }
+
+    .sr-header {
+      color: #5f6368;
+      font-size: 0.96rem;
+      margin: 8px 0 18px;
+    }
+
+    .sr-header strong {
+      color: var(--ink);
+    }
+
+    .no-results {
+      color: #5f6368;
+      border: 1px solid #eef0f2;
+      border-radius: 8px;
+      padding: 70px 20px;
+    }
+
+    @media (max-width: 980px) {
+      .h-nav {
+        overflow-x: auto;
+      }
+
+      .learn-hero {
+        grid-template-columns: 1fr;
+        padding-top: 26px;
+      }
+
+      .hero-art {
+        justify-self: start;
+        max-width: 310px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      :root {
+        --sw: 0px;
+        --hh: 60px;
+      }
+
+      aside {
+        display: none;
+      }
+
+      .h-brand {
+        width: auto;
+        min-width: 136px;
+        padding: 0 14px;
+        justify-content: flex-start;
+      }
+
+      .brand-name {
+        font-size: 1.12rem;
+      }
+
+      .h-nav {
+        display: none;
+      }
+
+      .h-right {
+        padding: 0 10px;
+      }
+
+      .search-inp,
+      .search-inp:focus {
+        width: min(48vw, 210px);
+      }
+
+      .content {
+        padding: 20px 16px 46px;
+      }
+
+      .learn-hero {
+        min-height: auto;
+        gap: 20px;
+        padding: 18px 0 30px;
+      }
+
+      .hero-copy h1 {
+        font-size: 1.56rem;
+        line-height: 1.12;
+      }
+
+      .hero-copy p {
+        font-size: 0.95rem;
+      }
+
+      .hero-art {
+        max-width: 280px;
+      }
+
+      .pg-head {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .overview-grid,
+      .bento {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -801,7 +1431,7 @@ const DATA = {
    STATE
 ══════════════════════════════════════ */
 let cat = Object.keys(DATA)[0];
-let sub = Object.keys(DATA[cat].subs)[0];
+let sub = '__all';
 let q   = '';
 
 /* ══════════════════════════════════════
@@ -817,15 +1447,110 @@ const dom = url => {
   catch { return url; }
 };
 
-const catTotal = c => Object.values(DATA[c].subs).flat().length;
-
 function setAmbient(c) {}
+
+function subIcon(name) {
+  const icons = {
+    '__all': 'bi bi-grid-3x3-gap',
+    '챗봇 & LLM': 'bi bi-chat-dots',
+    'AI 에이전트': 'bi bi-cpu',
+    'AI 글쓰기': 'bi bi-pencil-square',
+    '이미지 생성': 'bi bi-image',
+    '음악 생성': 'bi bi-music-note-beamed',
+    '비디오 생성': 'bi bi-camera-video',
+    '웹/앱 빌더': 'bi bi-window-stack',
+    '레퍼런스 & 영감': 'bi bi-lightbulb',
+    '디자인 도구': 'bi bi-vector-pen',
+    '스톡 & 에셋': 'bi bi-box-seam',
+    '학습 & 가이드': 'bi bi-mortarboard',
+    '모델 & 데이터': 'bi bi-database',
+    '코드 저장소': 'bi bi-git',
+    'AI 코딩': 'bi bi-code-square',
+    'API & 클라우드': 'bi bi-cloud',
+    'AI 연구소': 'bi bi-activity',
+    '논문 & 학습': 'bi bi-journal-text',
+    '뉴스 & 커뮤니티': 'bi bi-newspaper'
+  };
+  return icons[name] || 'bi bi-circle';
+}
+
+function catClass(catKey) {
+  return catKey.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+function pageTitle(catKey, subKey) {
+  const catTitles = {
+    'AI ASSISTANT': '대화형 AI 도구를 빠르게 비교하세요',
+    'AI CREATIVE': '콘텐츠 제작 AI를 한눈에 살펴보세요',
+    'UI/UX DESIGN': '디자인 작업에 필요한 도구를 찾아보세요',
+    'DEV TOOLS': '개발과 배포에 맞는 AI 도구를 고르세요',
+    'AI RESEARCH': 'AI 연구와 학습 리소스를 탐색하세요'
+  };
+
+  const subTitles = {
+    '챗봇 & LLM': '챗봇과 LLM 서비스를 비교하세요',
+    'AI 에이전트': '작업을 대신할 AI 에이전트를 찾아보세요',
+    'AI 글쓰기': '콘텐츠 작성 도구를 살펴보세요',
+    '이미지 생성': '이미지 생성 AI를 비교하세요',
+    '음악 생성': '음악과 음성 생성 도구를 찾아보세요',
+    '비디오 생성': '영상 제작 AI를 살펴보세요',
+    '웹/앱 빌더': '웹과 앱을 만드는 AI 빌더를 비교하세요',
+    '레퍼런스 & 영감': '디자인 레퍼런스를 빠르게 찾아보세요',
+    '디자인 도구': 'UI 작업에 필요한 디자인 도구를 고르세요',
+    '스톡 & 에셋': '이미지와 에셋 리소스를 찾아보세요',
+    '학습 & 가이드': '디자인 학습 자료를 살펴보세요',
+    '모델 & 데이터': 'AI 모델과 데이터 플랫폼을 비교하세요',
+    '코드 저장소': '코드 협업 도구를 살펴보세요',
+    'AI 코딩': '코딩을 돕는 AI 도구를 찾아보세요',
+    'API & 클라우드': 'AI API와 클라우드 도구를 비교하세요',
+    'AI 연구소': '주요 AI 연구 조직을 살펴보세요',
+    '논문 & 학습': '논문과 AI 학습 자료를 찾아보세요',
+    '뉴스 & 커뮤니티': 'AI 뉴스와 커뮤니티를 확인하세요'
+  };
+
+  return subKey === '__all' ? catTitles[catKey] : (subTitles[subKey] || `${subKey} 도구를 살펴보세요`);
+}
+
+function heroImage(catKey) {
+  const images = {
+    'AI ASSISTANT': 'assets/illustrations/ai-assistant-strongline.webp',
+    'AI CREATIVE': 'assets/illustrations/ai-creative-strongline.webp',
+    'UI/UX DESIGN': 'assets/illustrations/ui-ux-design-strongline.webp',
+    'DEV TOOLS': 'assets/illustrations/dev-tools-strongline.webp',
+    'AI RESEARCH': 'assets/illustrations/ai-research-strongline.webp'
+  };
+  return images[catKey] || images['AI ASSISTANT'];
+}
+
+function heroHTML(catKey, subKey, items) {
+  const catD = DATA[catKey];
+  const title = pageTitle(catKey, subKey);
+  const countLabel = `${items.length}개 서비스`;
+  const imageSrc = heroImage(catKey);
+
+  return `
+    <section class="learn-hero cat-${catClass(catKey)}">
+      <div class="hero-copy">
+        <div class="hero-kicker">${catKey}</div>
+        <h1>${title}</h1>
+        <p>${catD.desc}</p>
+        <div class="hero-actions">
+          <button class="hero-pill" onclick="selSub('__all')">전체 보기</button>
+          <span class="hero-count">${countLabel}</span>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <img src="${imageSrc}" alt="" loading="eager" />
+      </div>
+    </section>`;
+}
 
 /* ══════════════════════════════════════
    CARD HTML
 ══════════════════════════════════════ */
 function cardHTML(item, idx, catKey, isFeatured) {
   const grad = isFeatured ? DATA[catKey].grad : '';
+  const tone = `cat-${catClass(catKey)}`;
 
   const favEl = `
     <div class="bc-favicon-wrap">
@@ -834,7 +1559,7 @@ function cardHTML(item, idx, catKey, isFeatured) {
     </div>`;
 
   return `
-    <a class="bc-card ${isFeatured ? 'bc-featured '+grad : ''}"
+    <a class="bc-card ${tone} ${isFeatured ? 'bc-featured '+grad : ''}"
        href="${item.url}" target="_blank" rel="noopener">
       <div class="bc-in">
         <div class="bc-head-row">${favEl}<i class="bc-arrow">↗</i></div>
@@ -855,7 +1580,7 @@ function renderNav() {
   document.getElementById('hNav').innerHTML =
     Object.entries(DATA).map(([c,d]) => `
       <button class="h-tab ${c===cat?'active':''}" onclick="selCat('${c}')">
-        ${c}<span class="tab-badge">${catTotal(c)}</span>
+        ${c}
       </button>`).join('');
 }
 
@@ -864,18 +1589,15 @@ function renderSB() {
   const total = Object.values(subs).flat().length;
   const visits = parseInt(localStorage.getItem('piona_visits')) || 0;
   document.getElementById('sb').innerHTML = `
-    <div class="sb-lbl">탐색</div>
     <button class="sb-item ${sub==='__all'?'active':''}" onclick="selSub('__all')">
-      <span class="sb-dot"></span>전체 보기<span class="sb-n">${total}</span>
+      <i class="sb-ico ${subIcon('__all')}" aria-hidden="true"></i>전체 보기<span class="sb-n">${total}</span>
     </button>
-    <div class="sb-sep"></div>
-    <div class="sb-lbl">소분류</div>
     ${Object.entries(subs).map(([s,items])=>`
       <button class="sb-item ${sub===s?'active':''}" onclick="selSub('${s}')">
-        <span class="sb-dot"></span>${s}<span class="sb-n">${items.length}</span>
+        <i class="sb-ico ${subIcon(s)}" aria-hidden="true"></i>${s}<span class="sb-n">${items.length}</span>
       </button>`).join('')}
     <div class="sb-visitor"><div class="sb-visitor-inner">
-      <div class="sb-visitor-ico">👀</div>
+      <div class="sb-visitor-ico"><i class="bi bi-eye" aria-hidden="true"></i></div>
       <div class="sb-visitor-text">
         <div class="sb-visitor-lbl">방문 횟수</div>
         <div class="sb-visitor-num">${visits.toLocaleString('ko-KR')}회</div>
@@ -913,6 +1635,8 @@ function renderContent() {
     <span>AI Hub</span><span class="sep">›</span><span>${cat}</span>
     ${sub!=='__all'?`<span class="sep">›</span><span class="cur">${sub}</span>`:''}
   </div>`;
+
+  const hero = heroHTML(cat, sub, curItems);
 
   const ph = `<div class="pg-head">
     <div>
@@ -953,7 +1677,7 @@ function renderContent() {
     gridHTML = `<div class="bento">${curItems.map((it,i)=>cardHTML(it,i,cat,i===0)).join('')}</div>`;
   }
 
-  area.innerHTML = bc + ph + ovHTML + gridHTML;
+  area.innerHTML = bc + hero + ph + ovHTML + gridHTML;
 }
 
 function renderAll() { renderNav(); renderSB(); renderContent(); }
@@ -963,7 +1687,7 @@ function renderAll() { renderNav(); renderSB(); renderContent(); }
 ══════════════════════════════════════ */
 function selCat(c) {
   cat = c;
-  sub = Object.keys(DATA[c].subs)[0];
+  sub = '__all';
   q   = '';
   document.getElementById('si').value = '';
   renderAll();
