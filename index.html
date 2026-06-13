@@ -807,10 +807,14 @@
       margin-bottom: 10px;
     }
 
+    .hero-copy {
+      min-width: 0;
+    }
+
     .hero-copy h1 {
       max-width: 620px;
       color: var(--ink);
-      font-size: 2.36rem;
+      font-size: clamp(1.9rem, 2.8vw, 2.36rem);
       line-height: 1.05;
       font-weight: 800;
       letter-spacing: 0;
@@ -1110,6 +1114,11 @@
         padding-top: 26px;
       }
 
+      .hero-copy h1 {
+        max-width: 100%;
+        white-space: normal;
+      }
+
       .hero-art {
         justify-self: start;
         max-width: 310px;
@@ -1161,8 +1170,9 @@
       }
 
       .hero-copy h1 {
-        font-size: 1.56rem;
+        font-size: 1.7rem;
         line-height: 1.12;
+        white-space: normal;
       }
 
       .hero-copy p {
