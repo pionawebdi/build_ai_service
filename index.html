@@ -1022,6 +1022,14 @@
       height: 20px;
     }
 
+    .bc-favicon-letter {
+      color: var(--ink);
+      font-size: 0.93rem;
+      font-weight: 800;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
     .bc-name {
       color: var(--ink);
       font-size: 1rem;
@@ -1437,15 +1445,12 @@ let q   = '';
 /* ══════════════════════════════════════
    HELPERS
 ══════════════════════════════════════ */
-const fav = url => {
-  try { return `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=64`; }
-  catch { return ''; }
-};
-
 const dom = url => {
   try { return new URL(url).hostname.replace(/^www\./,''); }
   catch { return url; }
 };
+
+const serviceInitial = name => (name || '?').trim().charAt(0).toUpperCase();
 
 function setAmbient(c) {}
 
@@ -1554,8 +1559,7 @@ function cardHTML(item, idx, catKey, isFeatured) {
 
   const favEl = `
     <div class="bc-favicon-wrap">
-      <img class="bc-favicon" src="${fav(item.url)}" alt="${item.name}" loading="lazy"
-           onerror="this.parentNode.innerHTML='<span style=font-size:15px;font-weight:700;color:var(--a)>${item.name[0]}</span>'" />
+      <span class="bc-favicon-letter" aria-hidden="true">${serviceInitial(item.name)}</span>
     </div>`;
 
   return `
