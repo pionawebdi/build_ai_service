@@ -1462,6 +1462,28 @@ const dom = url => {
 
 const serviceInitial = name => (name || '?').trim().charAt(0).toUpperCase();
 
+function logoDomain(item) {
+  const overrides = {
+    'Microsoft Copilot': 'microsoft.com',
+    'OpenAI Platform': 'openai.com',
+    'Google AI Studio': 'google.com',
+    'Google DeepMind': 'deepmind.google',
+    'Meta AI': 'meta.com',
+    'Meta AI Research': 'ai.meta.com',
+    'DALL·E 3': 'openai.com',
+    'Canva AI': 'canva.com',
+    'Claude Design': 'anthropic.com'
+  };
+
+  if (overrides[item.name]) return overrides[item.name];
+  try { return new URL(item.url).hostname.replace(/^www\./,''); }
+  catch { return item.url; }
+}
+
+function faviconSrc(item) {
+  return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(logoDomain(item))}&sz=64`;
+}
+
 function setAmbient(c) {}
 
 function subIcon(name) {
@@ -1569,7 +1591,8 @@ function cardHTML(item, idx, catKey, isFeatured) {
 
   const favEl = `
     <div class="bc-favicon-wrap">
-      <span class="bc-favicon-letter" aria-hidden="true">${serviceInitial(item.name)}</span>
+      <img class="bc-favicon" src="${faviconSrc(item)}" alt="" loading="lazy"
+           onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'bc-favicon-letter',textContent:'${serviceInitial(item.name)}'}))" />
     </div>`;
 
   return `
